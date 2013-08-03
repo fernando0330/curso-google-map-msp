@@ -28,7 +28,9 @@
 			var markerOption = {
 				position: latlng, 
 				map: map1,
-				icon:"hospital.png"
+				icon:"hospital.png",
+				draggable:true,
+				animation: google.maps.Animation.BOUNCE
 			};
 			var marker1 = new google.maps.Marker(markerOption);
 			
@@ -40,6 +42,17 @@
 			};
 			var marker2 = new google.maps.Marker(markerOption2);
 			
+			
+			google.maps.event.addListener(marker1,"click",function(){
+				alert("yo soy el marker1");
+			});
+			google.maps.event.addListener(marker1,'dragend',function(){
+					alert("dragend");
+			});
+			
+			google.maps.event.addListener(marker2,"click",function(){
+				marker2.setOptions({animation:google.maps.Animation.BOUNCE});
+			});
 		}
 	</script>
 </html>
