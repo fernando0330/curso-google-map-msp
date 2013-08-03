@@ -3,8 +3,8 @@
 	<head>
 		<style type="text/css">
 			#map_canvas{
-				width:700px;
-				height:300px;
+				width:900px;
+				height:500px;
 			}
 		</style>
 		
@@ -25,9 +25,19 @@
 			var map1 = new google.maps.Map(document.getElementById('map_canvas'),mapOptions);
 			
 		
-			var marker1 = new google.maps.Marker({position: latlng, map: map1});
+			var markerOption = {
+				position: latlng, 
+				map: map1,
+				icon:"hospital.png"
+			};
+			var marker1 = new google.maps.Marker(markerOption);
 			
-			var marker2 = new google.maps.Marker({position: new google.maps.LatLng(19.533907,-70.796757), map: map1});
+			var markerOption2 = {
+				position: new google.maps.LatLng(19.533907,-70.796757), 
+				map: map1,
+				icon:"laboratories.png"
+			};
+			var marker2 = new google.maps.Marker(markerOption2);
 			
 			
 		}
