@@ -24,10 +24,13 @@
 			
 			var map1 = new google.maps.Map(document.getElementById('map_canvas'),mapOptions);
 			
+		
 			var markerOption = {
 				position: latlng, 
 				map: map1,
-				icon:"hospital.png"
+				icon:"hospital.png",
+				draggable:true,
+				animation: google.maps.Animation.BOUNCE
 			};
 			var marker1 = new google.maps.Marker(markerOption);
 			
@@ -37,9 +40,30 @@
 				icon:"laboratories.png",
 				animation: google.maps.Animation.DROP
 			};
-			
-			
 			var marker2 = new google.maps.Marker(markerOption2);
+			
+			
+			var infoWindow1 = new google.maps.InfoWindow({
+				content: "Soy infowindow1"
+			});
+			
+			google.maps.event.addListener(marker1,"click",function(){
+				marker1.setOptions({animation: google.maps.Animation.DROP});
+				infoWindow1.open(map1,marker1);
+			});
+			
+			google.maps.event.addListener(infoWindow1,"closeclick",function(){
+				alert("hola");
+			});
+			
+			
+			google.maps.event.addListener(marker1,'dragend',function(){
+					alert("dragend");
+			});
+			
+			google.maps.event.addListener(marker2,"click",function(){
+				marker2.setOptions({animation:google.maps.Animation.BOUNCE});
+			});
 		}
 	</script>
 </html>

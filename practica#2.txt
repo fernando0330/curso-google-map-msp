@@ -1,0 +1,21 @@
+Practica #2
+
+
+Hacer un formulario donde se tenga los establecimientos y se pueda decir cual es el trayecto desde mi ubicacion actual.
+Dicho formulario tendra un field select (combobox) con lugares y un boton de buscar para hacer submit.
+
+Tambien tendra el bloque del mapa donde es que se mostrará el trayecto (la ruta)
+
+Para el manejo del submit del formulario en javascript puede hacerlo con jquery, 
+<form id="myForm"></form>
+
+$('#myForm').submit(function(e){
+   e.preventDefault();
+   //aqui podran poner lo que quieran
+});
+
+
+Los recursos que necesitaran son los siguientes:
+Directions Services
+https://developers.google.com/maps/documentation/javascript/services?csw=1#Directions
+

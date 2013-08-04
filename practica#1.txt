@@ -1,0 +1,7 @@
+Practica #1
+
+Crear un mapa con al menos 10 establecimientos, cada uno de los establecimientos deben de estar personalizados. Realizar esto con arreglos.
+ 
+ 
+Para esto, guiarse de los ejemplos realizados.
+

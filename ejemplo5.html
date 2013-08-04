@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			#map_canvas{
+				width:900px;
+				height:500px;
+			}
+		</style>
+		
+	</head>
+	<body onload="javascript:load();">
+		<div id="map_canvas"></div>
+	</body>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"> </script>
+	<script type="text/javascript">
+		function load(){
+			var latlng = new google.maps.LatLng(18.505006,-69.98365);
+			var mapOptions = {
+				zoom: 8,
+				center:  latlng,
+				mapTypeId: google.maps.MapTypeId.HYBRID
+			};
+			
+			var map1 = new google.maps.Map(document.getElementById('map_canvas'),mapOptions);
+			
+		
+			var markerOption = {
+				position: latlng, 
+				map: map1,
+				icon:"hospital.png",
+				draggable:true,
+				animation: google.maps.Animation.BOUNCE
+			};
+			
+			var places = [];
+			places.push({name:"Establecimiento 1", lat: 18.505006, lon: -69.98365, placeType:1 });
+			places.push({name:"Establecimiento 2", lat: 19.533907, lon: -70.796757, placeType:2 }); 
+			places.push({name:"Establecimiento 3", lat: 19.513198, lon: -70.741825, placeType:1 }); 
+			places.push({name:"Establecimiento 4", lat: 18.999803, lon: -71.626225, placeType:2 }); 
+			places.push({name:"Establecimiento 5", lat: 18.661859, lon: -68.544559, placeType:1 }); 
+			
+			
+			var markers = [];
+			var markersOptions = [];
+			var iconPlace = null;
+			for(var i=0;i< places.length;i++){
+				if (places[i].placeType == 1) iconPlace = "hospital.png";
+				else iconPlace = "laboratories.png";
+				
+				markersOptions[i] ={
+					position: new google.maps.LatLng(places[i].lat,places[i].lon),
+					map: map1,
+					icon: iconPlace
+				};
+				markers[i] = new google.maps.Marker(markersOptions[i]);
+				
+				google.maps.event.addListener(markers[i],"click",function(latLong){
+					//alert(JSON.stringify(latLong));
+					//{"latLng":{"jb":18.505006,"kb":-69.98365000000001}}
+					//alert(latLong.latLng.jb);
+					for(var a=0;a< places.length;a++){
+						if (places[a].lat == latLong.latLng.jb && places[a].lon == latLong.latLng.kb){
+							alert(places[a].name);
+							break;
+						}
+					}
+				});
+				
+			}
+			/*var marker1 = new google.maps.Marker(markerOption);
+			
+			var markerOption2 = {
+				position: new google.maps.LatLng(19.533907,-70.796757), 
+				map: map1,
+				icon:"laboratories.png",
+				animation: google.maps.Animation.DROP
+			};
+			var marker2 = new google.maps.Marker(markerOption2);
+			
+			
+			var infoWindow1 = new google.maps.InfoWindow({
+				content: "Soy infowindow1"
+			});
+			
+			google.maps.event.addListener(marker1,"click",function(){
+				marker1.setOptions({animation: google.maps.Animation.DROP});
+				infoWindow1.open(map1,marker1);
+			});
+			
+			google.maps.event.addListener(infoWindow1,"closeclick",function(){
+				alert("hola");
+			});
+			
+			
+			google.maps.event.addListener(marker1,'dragend',function(){
+					alert("dragend");
+			});
+			
+			google.maps.event.addListener(marker2,"click",function(){
+				marker2.setOptions({animation:google.maps.Animation.BOUNCE});
+			});*/
+		}
+	</script>
+</html>
